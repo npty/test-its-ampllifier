@@ -1,0 +1,21 @@
+{
+  "name": "test-devnet-amplifier",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "deploy": "bun run deploy.ts",
+    "transfer": "bun run transfer.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@wagmi/cli": "^2.1.16"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@axelar-network/interchain-token-service": "^1.2.4",
+    "ethers": "^6.13.4",
+    "viem": "^2.21.38"
+  }
+}
