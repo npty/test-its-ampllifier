@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "deploy": "bun run deploy.ts",
+    "mdeploy": "bun run mdeploy.ts",
     "transfer": "bun run transfer.ts"
   },
   "devDependencies": {

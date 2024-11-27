@@ -23,7 +23,7 @@ const sepolia = {
   rpcUrls: overridedRpcUrls.sepolia,
 };
 
-export const sourceChain = avalancheFuji;
+export const sourceChain = sepolia;
 
 const suiChain = "sui-test2";
 export const sourceRpcUrl = sourceChain.rpcUrls.default.http[0];
