@@ -12,7 +12,7 @@ import { avalancheFuji, sepolia as ethSepolia } from "viem/chains";
 const overridedRpcUrls = {
   sepolia: {
     default: {
-      http: ["https://avalanche-fuji-c-chain-rpc.publicnode.com"],
+      http: ["https://1rpc.io/sepolia"],
     },
   },
   avalancheFuji: avalancheFuji.rpcUrls,
@@ -23,7 +23,7 @@ const sepolia = {
   rpcUrls: overridedRpcUrls.sepolia,
 };
 
-export const sourceChain = sepolia;
+export const sourceChain = avalancheFuji;
 
 const suiChain = "sui-test2";
 export const sourceRpcUrl = sourceChain.rpcUrls.default.http[0];
@@ -34,6 +34,7 @@ export const destinationChain = suiChain;
 const privateKey: Hex = process.env.PRIVATE_KEY as Hex;
 export const itsContractAddress = "0x144c3d7A5f5198EF3B46A8258b35E903cf197A66";
 export const itfContractAddress = "0x6Ae8C8498d5FDA930e6ABeB0E15E5A00471702a7";
+export const multicallAddress = "0xca11bde05977b3631167028862be2a173976ca11";
 export const tokenName = "TestToken";
 export const tokenSymbol = "TT";
 export const tokenDecimals = 9;
