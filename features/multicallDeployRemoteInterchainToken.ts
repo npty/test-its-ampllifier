@@ -6,7 +6,6 @@ import {
   type Keccak256Hash,
 } from "viem";
 import { InterchainTokenFactoryABI } from "../abi/interchain-token-factory";
-import { Multicall3ABI } from "../abi/multicall";
 import {
   publicClient,
   itfContractAddress,
@@ -18,7 +17,6 @@ import {
   tokenDecimals,
   initialTokenSupply,
   destinationChain,
-  multicallAddress,
 } from "../config";
 
 export async function multicallDeployInterchainToken(
@@ -57,18 +55,13 @@ export async function multicallDeployInterchainToken(
     }),
   ];
 
-  const multicallArgs = calldatas.map((calldata, index) => ({
-    target: itfContractAddress as Hex,
-    callData: calldata as Hex,
-    allowFailure: false,
-    value: index === 1 ? BigInt(gas) : 0n,
-  }));
+  const multicallArgs = calldatas.map((calldata) => calldata as Hex);
 
   const { request: multicallRequest } = await publicClient.simulateContract({
     account: wallet,
-    address: multicallAddress,
-    abi: parseAbi(Multicall3ABI),
-    functionName: "aggregate3Value",
+    address: itfContractAddress,
+    abi: parseAbi(InterchainTokenFactoryABI),
+    functionName: "multicall",
     args: [multicallArgs],
     value: gas,
   });
