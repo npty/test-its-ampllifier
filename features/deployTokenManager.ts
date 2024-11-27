@@ -2,7 +2,7 @@ import { encodeAbiParameters, keccak256, parseEther } from "viem";
 import { InterchainTokenServiceABI } from "../abi";
 import {
   destinationChain,
-  itsContractAddresses,
+  itsContractAddress,
   publicClient,
   wallet,
   walletClient,
@@ -32,7 +32,7 @@ export async function deployTokenManager() {
     // First simulate the transaction
     const { request } = await publicClient.simulateContract({
       account: wallet.address,
-      address: itsContractAddresses.avalancheFuji,
+      address: itsContractAddress,
       abi: InterchainTokenServiceABI,
       functionName: "deployTokenManager",
       args: [
@@ -60,14 +60,14 @@ export async function deployTokenManager() {
     // Get the deployed token manager address
     // You can use the tokenManagerAddress function from the contract
     const tokenId = await publicClient.readContract({
-      address: itsContractAddresses.avalancheFuji,
+      address: itsContractAddress,
       abi: InterchainTokenServiceABI,
       functionName: "interchainTokenId",
       args: [wallet.address, keccak256("0x1")],
     });
 
     const tokenManagerAddress = await publicClient.readContract({
-      address: itsContractAddresses.avalancheFuji,
+      address: itsContractAddress,
       abi: InterchainTokenServiceABI,
       functionName: "tokenManagerAddress",
       args: [tokenId],
