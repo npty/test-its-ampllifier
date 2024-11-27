@@ -7,21 +7,33 @@ import {
   type Hex,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-import { avalancheFuji } from "viem/chains";
+import { avalancheFuji, sepolia as ethSepolia } from "viem/chains";
 
-export const sourceChain = avalancheFuji;
+const overridedRpcUrls = {
+  sepolia: {
+    default: {
+      http: ["https://avalanche-fuji-c-chain-rpc.publicnode.com"],
+    },
+  },
+  avalancheFuji: avalancheFuji.rpcUrls,
+};
+
+const sepolia = {
+  ...ethSepolia,
+  rpcUrls: overridedRpcUrls.sepolia,
+};
+
+export const sourceChain = sepolia;
+
 const suiChain = "sui-test2";
+export const sourceRpcUrl = sourceChain.rpcUrls.default.http[0];
 export const destinationAddress =
   "0x09e0eaf3a1111f411b7aa488ed211820eb7a53a9b29741fd5ac92ea97ebea2a2";
 export const destinationChain = suiChain;
 
 const privateKey: Hex = process.env.PRIVATE_KEY as Hex;
-export const itsContractAddresses = {
-  avalancheFuji: "0x144c3d7A5f5198EF3B46A8258b35E903cf197A66",
-} as const;
-export const itfContractAddresses = {
-  avalancheFuji: "0x6Ae8C8498d5FDA930e6ABeB0E15E5A00471702a7",
-} as const;
+export const itsContractAddress = "0x144c3d7A5f5198EF3B46A8258b35E903cf197A66";
+export const itfContractAddress = "0x6Ae8C8498d5FDA930e6ABeB0E15E5A00471702a7";
 export const tokenName = "TestToken";
 export const tokenSymbol = "TT";
 export const tokenDecimals = 9;

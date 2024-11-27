@@ -1,10 +1,11 @@
 import { type Keccak256Hash } from "viem";
 import { InterchainTokenServiceABI } from "../abi";
 import {
-  itsContractAddresses,
+  itsContractAddress,
   destinationChain,
   defaultGasValue,
   destinationAddress,
+  sourceRpcUrl,
 } from "../config";
 import { Contract, JsonRpcProvider, Wallet } from "ethers";
 
@@ -22,12 +23,10 @@ export async function transferRemoteToken(
     defaultGasValue,
   ] as const;
 
-  const provider = new JsonRpcProvider(
-    "https://avalanche-fuji-c-chain-rpc.publicnode.com",
-  );
+  const provider = new JsonRpcProvider(sourceRpcUrl);
   const signer = new Wallet(process.env.PRIVATE_KEY as string, provider);
   const contract = new Contract(
-    itsContractAddresses.avalancheFuji,
+    itsContractAddress,
     InterchainTokenServiceABI,
     signer,
   );

@@ -2,7 +2,7 @@ import { parseAbi, zeroAddress, type Keccak256Hash } from "viem";
 import { InterchainTokenFactoryABI } from "../abi/interchain-token-factory";
 import {
   publicClient,
-  itfContractAddresses,
+  itfContractAddress,
   wallet,
   walletClient,
   defaultGasValue,
@@ -18,7 +18,7 @@ export async function deployInterchainToken(
   gasValue?: bigint,
 ) {
   const tokenId = await publicClient.readContract({
-    address: itfContractAddresses.avalancheFuji,
+    address: itfContractAddress,
     abi: parseAbi(InterchainTokenFactoryABI),
     functionName: "interchainTokenId",
     args: [wallet.address, salt],
@@ -30,7 +30,7 @@ export async function deployInterchainToken(
   const { request: localDeploymentRequest } =
     await publicClient.simulateContract({
       account: wallet,
-      address: itfContractAddresses.avalancheFuji,
+      address: itfContractAddress,
       abi: parseAbi(InterchainTokenFactoryABI),
       functionName: "deployInterchainToken",
       args: [
@@ -52,7 +52,7 @@ export async function deployInterchainToken(
   const { request: remoteDeploymentRequest } =
     await publicClient.simulateContract({
       account: wallet,
-      address: itfContractAddresses.avalancheFuji,
+      address: itfContractAddress,
       abi: parseAbi(InterchainTokenFactoryABI),
       functionName: "deployRemoteInterchainToken",
       args: ["", salt, zeroAddress, destinationChain, gas],
