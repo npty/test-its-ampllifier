@@ -12,6 +12,7 @@ export const InterchainTokenFactoryABI = [
 
   // Write functions
   "function deployInterchainToken(bytes32 salt, string name, string symbol, uint8 decimals, uint256 initialSupply, address minter) payable returns (bytes32 tokenId)",
+  "function multicall(bytes[] data) payable returns (bytes[] results)",
   "function deployRemoteInterchainToken(string originalChainName, bytes32 salt, address minter, string destinationChain, uint256 gasValue) payable returns (bytes32 tokenId)",
   "function registerCanonicalInterchainToken(address tokenAddress) payable returns (bytes32 tokenId)",
   "function deployRemoteCanonicalInterchainToken(address originalTokenAddress, string destinationChain, uint256 gasValue) payable returns (bytes32 tokenId)",
