@@ -1,4 +1,4 @@
-import { formatEther, type Address } from "viem";
+import { formatEther } from "viem";
 import { publicClient, wallet } from "../config";
 
 export async function printBalance() {
