@@ -15,7 +15,11 @@ const overridedRpcUrls = {
       http: ["https://1rpc.io/sepolia"],
     },
   },
-  avalancheFuji: avalancheFuji.rpcUrls,
+  avalancheFuji: {
+    default: {
+      http: ["https://api.avax-test.network/ext/bc/C/rpc"],
+    },
+  },
 };
 
 const sepolia = {
@@ -25,7 +29,7 @@ const sepolia = {
 
 export const sourceChain = avalancheFuji;
 
-const suiChain = "sui-test2";
+const suiChain = "sui";
 export const sourceRpcUrl = sourceChain.rpcUrls.default.http[0];
 export const destinationAddress =
   "0x09e0eaf3a1111f411b7aa488ed211820eb7a53a9b29741fd5ac92ea97ebea2a2";
