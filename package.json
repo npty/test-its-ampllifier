@@ -3,9 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "deploy": "bun run deploy.ts",
-    "mdeploy": "bun run mdeploy.ts",
-    "transfer": "bun run transfer.ts"
+    "deploy": "bun run src/deploy.ts",
+    "mdeploy": "bun run src/mdeploy.ts",
+    "transfer": "bun run src/transfer.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
